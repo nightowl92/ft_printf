@@ -1,16 +1,43 @@
-#include "printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/27 16:40:39 by stherkil          #+#    #+#             */
+/*   Updated: 2019/07/27 18:30:38 by stherkil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_printf(char *s, int num, ...)
-{
-    va_list valist;
+#include "ft_printf.h"
 
-    va_start(valist, num);
-while (*s)
+int		getfct(va_list valist, char *s, int i)
 {
-    write(1, s, 1);
-s++;
+int nb;
+    if (s[i] == 'd')
+    {
+        nb = va_arg(valist, int);
+        ft_putstr(ft_itoa(nb));
+
+    }
+	return (i);
 }
 
-va_end(valist);
-    return (0);
+int		ft_printf(char *s, ...)
+{
+	va_list valist;
+	int     i;
+
+	i = -1;
+	va_start(valist, s);
+	while (s[++i])
+	{
+		if (s[i] == '%')
+			i = getfct(valist, s, i + 1);        
+		else
+			write(1, s + i, 1);
+	}
+	va_end(valist);
+	return (0);
 }
