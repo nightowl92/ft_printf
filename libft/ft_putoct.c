@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 20:37:44 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/29 11:45:28 by stherkil         ###   ########.fr       */
+/*   Created: 2019/01/11 15:04:50 by stherkil          #+#    #+#             */
+/*   Updated: 2019/07/29 11:53:56 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+void	ft_putoct(int n)
 {
-	if (ap)
+	if (n < 8)
+		ft_putnbr(n);
+	else
 	{
-		free(*ap);
-		*ap = NULL;
+		ft_putoct(n / 8);
+		ft_putoct(n % 8);
 	}
 }

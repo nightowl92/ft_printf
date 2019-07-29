@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 20:37:44 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/29 11:45:28 by stherkil         ###   ########.fr       */
+/*   Created: 2019/07/29 14:31:57 by stherkil          #+#    #+#             */
+/*   Updated: 2019/07/29 14:40:17 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+int		ft_numlen(int nb)
 {
-	if (ap)
+	int i;
+
+	i = 0;
+	if (nb < 0)
 	{
-		free(*ap);
-		*ap = NULL;
+		i = 1;
+		nb = -nb;
 	}
+	while ((nb /= 10))
+		++i;
+	return (i);
 }

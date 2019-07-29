@@ -26,6 +26,9 @@ SRCS = ft_atoi.c ft_itoa.c\
 	   ft_memset.c \
 	   ft_putendl.c \
 	   ft_putnbr.c \
+	   ft_puthex.c \
+	   ft_puthexu.c \
+	   ft_putoct.c \
 	   ft_strnlen.c \
 	   ft_strsplit.c \
 	   ft_putchar_fd.c \
@@ -42,29 +45,25 @@ SRCS = ft_atoi.c ft_itoa.c\
 	   ft_lstdel.c \
 	   ft_lstadd.c \
 	   ft_lstiter.c \
-	   ft_lstmap.c
+	   ft_lstmap.c \
+	   ft_numlen.c
 
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
-HEAD = libft.h
-
 RM = rm -f
-
-CC = gcc -c
 
 all		: $(NAME)
 
-$(NAME)	:
-			$(CC) $(HEAD) $(SRCS)
-			ar rc $(NAME) $(OBJS)
-			ranlib $(NAME)
+$(NAME)	: $(OBJS)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 
 clean :
 	$(RM) $(OBJS)
 
 fclean :	clean
-			$(RM) $(NAME)
+	$(RM) $(NAME)
 
 re : fclean all
