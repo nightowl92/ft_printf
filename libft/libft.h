@@ -6,7 +6,7 @@
 /*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 12:21:16 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/29 14:33:03 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:40:20 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char				**ft_strsplit(char const *s, char c);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-int					ft_numlen(int nb);
+int					ft_numlen(int nb, int base);
 
 typedef	struct		s_list
 {

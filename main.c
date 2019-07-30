@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	ft_printf("bonjour o%-*yyyy %d %s lol \n", 4, "les amis");
+	ft_printf("bonjour o%d \n", 4);
 	/*
 	printf("res is %d\n", ft_printf("ok \n%s%d\n", "et alors\n", 555));
 	printf("res is %d\n", printf("ok \n%s%d\n", "et alors\n", 555));

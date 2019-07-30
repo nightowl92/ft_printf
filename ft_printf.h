@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:47 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/29 15:33:38 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/07/30 17:39:35 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		ft_printf(char *s, ...);
 
 typedef struct		s_data
 {
+	int flagno;
 	int flagmin;
 	int flagplu;
 	int flagsp;
@@ -35,11 +36,8 @@ typedef struct		s_data
 	int lenghh;
 	int lengh;
 	int lengl;
-	int lengll;
-	int lengj;
-	int lengz;
-	int lengt;
 	int lengL;
+	int lengll;
 }					t_data;
 
 

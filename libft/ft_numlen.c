@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 14:31:57 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/29 14:40:17 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:49:43 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_numlen(int nb)
+int		ft_numlen(int nb, int base)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	if (nb < 0)
 	{
-		i = 1;
+		++i;
 		nb = -nb;
 	}
-	while ((nb /= 10))
+	while ((nb /= base))
 		++i;
 	return (i);
 }
