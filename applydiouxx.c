@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   applydiouxx.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/31 18:15:03 by stherkil          #+#    #+#             */
+/*   Updated: 2019/07/31 18:15:09 by stherkil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void		applydi(va_list valist, t_data *arginp)
@@ -72,7 +84,7 @@ void		applyuoxx(va_list valist, t_data *arginp, char c)
 	if (arginp->flagplu == 1)
 		ft_putchar('+');
 	if (base == 10)
-	ft_putnbruoxx(inp, base);
+		ft_putnbruoxx(inp, base);
 	while (arginp->wid > ft_numlen(inp, base) && arginp->flagmin == 1)
 	{
 		ft_putchar(' ');
