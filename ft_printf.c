@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:39 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/30 17:59:39 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/07/31 15:59:01 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void		init(t_data *arginp)
 	arginp->flagsp = 0;
 	arginp->flaghas = 0;
 	arginp->flagzer = 0;
-	arginp->wid = -1;
-	arginp->prec = -1;
+	arginp->wid = 0;
+	arginp->prec = 0;
 	arginp->lengno = 0;
 	arginp->lenghh = 0;
 	arginp->lengh = 0;
@@ -36,15 +36,15 @@ int			getflag(t_data *arginp, char *s)
 	int i;
 
 	i = 1;
-	if (s[i] == '-')
+	if (s[0] == '-')
 		arginp->flagmin = 1;
-	else if (s[i] == '+')
+	else if (s[0] == '+')
 		arginp->flagplu = 1;
-	else if (s[i] == ' ')
+	else if (s[0] == ' ' && !arginp->flagzer)
 		arginp->flagsp = 1;
-	else if (s[i] == '#')
+	else if (s[0] == '#')
 		arginp->flaghas = 1;
-	else if (s[i] == '0')
+	else if (s[0] == '0')
 		arginp->flagzer = 1;
 	else
 	{
@@ -85,6 +85,8 @@ int			getprec(va_list valist, t_data *arginp, char *s)
 	}
 	else
 		i = 0;
+	if (arginp->prec)
+		arginp->wid = 0;
 	return (i);
 }
 
@@ -128,8 +130,33 @@ int			getleng(t_data *arginp, char *s)
 
 void		applydi(va_list valist, t_data *arginp)
 {
-	if (arginp->flagno == 1)
-		va_arg(valist, int);
+	long long int inp;
+	int len;
+
+	if (arginp->lengno == 1)
+		inp = (long long int)va_arg(valist, int);
+	else if (arginp->lengl == 1)
+		inp = (long long int)va_arg(valist, long int);
+	else if (arginp->lengll == 1)
+		inp = va_arg(valist, long long int);
+	else
+		inp = (long long int)va_arg(valist, int);
+	while (arginp->wid > ft_numlen(inp, 10) && arginp->flagmin == 0)
+	{
+		if (arginp->flagzer && !arginp->flagsp)
+			ft_putchar('0');
+		else
+			ft_putchar(' ');
+		--arginp->wid;
+	}
+	if (inp > 0 && arginp->flagplu == 1)
+	ft_putchar('+');
+	ft_putnbr(inp);
+	while (arginp->wid > ft_numlen(inp, 10) && arginp->flagmin == 1)
+	{
+			ft_putchar(' ');
+		--arginp->wid;
+	}
 }
 
 void		applyuoxx(va_list valist, t_data *arginp, char c)
@@ -146,16 +173,17 @@ void		applyf(va_list valist, t_data *arginp)
 
 void		applycps(va_list valist, t_data *arginp, char c)
 {
-	printf("ici\n");
 	if (c == 's')
 		ft_putstr(va_arg(valist, char*));
 	else if (c == 'c')
-		ft_putchar((int)va_arg(valist, char));
+		ft_putchar(va_arg(valist, int));
 }
 
 int			getspeci(va_list valist, t_data *arginp, char *s)
 {
-	printf("coucou %s\n", s);
+	int i;
+
+	i = 1;
 	if (*s == 'd' || *s == 'i')
 		applydi(valist, arginp);
 	else if (*s == 'u' || *s == 'o' || *s == 'x' || *s == 'X')
@@ -164,25 +192,28 @@ int			getspeci(va_list valist, t_data *arginp, char *s)
 		applyf(valist, arginp);
 	else if (*s == 'c' || *s == 's' || *s == 'p')
 		applycps(valist, arginp, *s);
-	return (1);
+	else 
+		i = 0;
+	return (i);
 }
 
 int			getargs(va_list valist, t_data *arginp, char *s, int *nb)
 {
 	int i;
+	int ii;
 
-	i = 1;
+	i = 0;
 	if (s[0] == '%')
 	{
 		ft_putchar('%');
 		return (1);
 	}
 	init(arginp);
-	/*
-	i += getflag(arginp, s + i);
+	while ((ii = getflag(arginp, s + i)))
+		i += ii;
 	i += getwidt(valist, arginp, s + i);
 	i += getprec(valist, arginp, s + i);
-	i += getleng(arginp, s + i);*/
+	i += getleng(arginp, s + i);
 	i += getspeci(valist, arginp, s + i);
 	return (i);
 }

@@ -6,13 +6,13 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 14:31:57 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/30 16:49:43 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/07/31 15:10:52 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_numlen(int nb, int base)
+int		ft_numlen(long long int nb, int base)
 {
 	int i;
 
