@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:47 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/31 13:56:14 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/07/31 18:13:34 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ typedef struct		s_data
 	int lengL;
 	int lengll;
 }					t_data;
-
-
+int			getwidt(va_list valist, t_data *arginp, char *s);
+int			getprec(va_list valist, t_data *arginp, char *s);
+int			getleng(t_data *arginp, char *s);
+int			getspeci(va_list valist, t_data *arginp, char *s);
+void		applyuoxx(va_list valist, t_data *arginp, char c);
+void		applydi(va_list valist, t_data *arginp);
 #endif
