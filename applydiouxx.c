@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   applydiouxx.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:03 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/31 18:15:09 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/01 15:17:37 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		applydi(va_list valist, t_data *arginp)
 			ft_putchar('0');
 		else
 			ft_putchar(' ');
-		--arginp->wid;
+		--(arginp->wid);
 	}
 	if (inp > 0 && arginp->flagplu == 1)
 		ft_putchar('+');
@@ -42,7 +42,7 @@ void		applydi(va_list valist, t_data *arginp)
 	}
 }
 
-void ft_putnbruoxx(unsigned long long int inp, char c)
+void		ft_putnbruoxx(unsigned long long int inp, char c)
 {
 	if (c == 'u')
 		ft_putnbr(inp);
@@ -56,13 +56,13 @@ void ft_putnbruoxx(unsigned long long int inp, char c)
 
 void		applyuoxx(va_list valist, t_data *arginp, char c)
 {
-	unsigned long long int inp;
-	int base;
+	unsigned long long int	inp;
+	int						base;
 
 	if (arginp->lengno == 1)
-		inp = (unsigned long long int)va_arg(valist,unsigned int);
+		inp = (unsigned long long int)va_arg(valist, unsigned int);
 	else if (arginp->lengl == 1)
-		inp = (unsigned long long int)va_arg(valist,unsigned long int);
+		inp = (unsigned long long int)va_arg(valist, unsigned long int);
 	else if (arginp->lengll == 1)
 		inp = va_arg(valist, unsigned long long int);
 	else

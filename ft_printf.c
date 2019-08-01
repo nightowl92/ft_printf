@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:39 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/31 18:15:17 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/01 15:00:25 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		init(t_data *arginp)
 	arginp->flaghas = 0;
 	arginp->flagzer = 0;
 	arginp->wid = 0;
-	arginp->prec = 0;
+	arginp->prec = -1;
 	arginp->lengno = 0;
 	arginp->lenghh = 0;
 	arginp->lengh = 0;

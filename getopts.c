@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getopts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:47 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/31 18:15:51 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/01 16:19:21 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			getwidt(va_list valist, t_data *arginp, char *s)
 	else if (ft_isdigit(*s))
 	{
 		arginp->wid = ft_atoi(s);
-		i = ft_numlen(arginp->wid, 10); 
+		i = ft_numlen(arginp->wid, 10);
 	}
 	else
 		i = 0;
@@ -33,17 +33,19 @@ int			getprec(va_list valist, t_data *arginp, char *s)
 {
 	int i;
 
-	i = 1;
-	if (*s == '*')
+	i = 2;
+	if (s[0] != '.')
+		return (0);
+	if (s[1] == '*')
 		arginp->prec = va_arg(valist, int);
-	else if (ft_isdigit(*s))
+	else if (ft_isdigit(s[1]) || s[1] == '+')
 	{
 		arginp->prec = ft_atoi(s);
-		i = ft_numlen(arginp->wid, 10);
+		i = ft_numlen(arginp->wid, 10) + 1;
 	}
 	else
-		i = 0;
-	if (arginp->prec)
+		i = 1;
+	if (arginp->prec != -1)
 		arginp->wid = 0;
 	return (i);
 }
