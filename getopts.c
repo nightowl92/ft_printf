@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:47 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/01 16:19:21 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/02 16:49:59 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,19 @@ int			getprec(va_list valist, t_data *arginp, char *s)
 		arginp->prec = va_arg(valist, int);
 	else if (ft_isdigit(s[1]) || s[1] == '+')
 	{
-		arginp->prec = ft_atoi(s);
-		i = ft_numlen(arginp->wid, 10) + 1;
+		arginp->prec = ft_atoi(s + 1);
+		i = ft_numlen(arginp->prec, 10) + 1;
+	}
+	else if (s[1] == '-')
+	{
+		arginp->prec = 0;
+		i = ft_numlen(ft_atoi(s + 1), 10) + 1;
 	}
 	else
 		i = 1;
-	if (arginp->prec != -1)
+	if (arginp->prec != -1 && arginp->wid <= arginp->prec)
 		arginp->wid = 0;
+	arginp->flagzer = 0;
 	return (i);
 }
 

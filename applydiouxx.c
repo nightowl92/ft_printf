@@ -6,11 +6,16 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:03 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/01 15:17:37 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/02 16:49:31 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int ft_max(int a, int b)
+{
+	return (a > b ? a : b);
+}
 
 void		applydi(va_list valist, t_data *arginp)
 {
@@ -24,7 +29,7 @@ void		applydi(va_list valist, t_data *arginp)
 		inp = va_arg(valist, long long int);
 	else
 		inp = (long long int)va_arg(valist, int);
-	while (arginp->wid + arginp->flagplu > ft_numlen(inp, 10) && arginp->flagmin == 0)
+	while (arginp->wid - arginp->flagplu > ft_max(ft_numlen(inp, 10), arginp->prec) && arginp->flagmin == 0)
 	{
 		if (arginp->flagzer && !arginp->flagsp)
 			ft_putchar('0');
@@ -34,6 +39,11 @@ void		applydi(va_list valist, t_data *arginp)
 	}
 	if (inp > 0 && arginp->flagplu == 1)
 		ft_putchar('+');
+	while (arginp->prec > ft_numlen(inp, 10))
+	{
+		ft_putchar('0');
+		--arginp->prec;
+	}
 	ft_putnbr(inp);
 	while (arginp->wid > ft_numlen(inp, 10) && arginp->flagmin == 1)
 	{
@@ -73,21 +83,23 @@ void		applyuoxx(va_list valist, t_data *arginp, char c)
 		base = 8;
 	else
 		base = 16;
-	while (arginp->wid + arginp->flagplu && inp > ft_numlen(inp, base) && arginp->flagmin == 0)
+	while (arginp->wid > ft_max(ft_numlen(inp, base), arginp->prec) && arginp->flagmin == 0)
 	{
 		if (arginp->flagzer && !arginp->flagsp)
 			ft_putchar('0');
 		else
 			ft_putchar(' ');
-		--arginp->wid;
+		--(arginp->wid);
 	}
-	if (arginp->flagplu == 1)
-		ft_putchar('+');
-	if (base == 10)
-		ft_putnbruoxx(inp, base);
+	while (arginp->prec > ft_numlen(inp, base))
+	{
+		ft_putchar('0');
+		--arginp->prec;
+	}
+	ft_putnbruoxx(inp, c);
 	while (arginp->wid > ft_numlen(inp, base) && arginp->flagmin == 1)
 	{
 		ft_putchar(' ');
-		--arginp->wid;
+		--(arginp->wid);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:30 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/01 15:18:15 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/02 16:29:08 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,31 @@
 void		applyf(va_list valist, t_data *arginp)
 {
 	double out;
-	int mult;
+	int		mult;
 
 	mult = 1;
-		out = va_arg(valist, double);
+	out = va_arg(valist, double);
+	if (arginp->flagplu == 1 && out > 0.0)
+		ft_putchar('+');
 	ft_putnbr((long long int)out);
 	ft_putchar('.');
 	out = out - (long)out;
 	if (arginp->prec == -1)
-		arginp->prec = 6;
-	out *= 10;
-	ft_putnbr((int)out);
-	out = out - (long)out;
-	out *= 10;
-	ft_putnbr((int)out);
-	out = out - (long)out;
-	out *= 10;
-	ft_putnbr((int)out);
-	out = out - (long)out;
-	out *= 10;
-	ft_putnbr((int)out);
-	out = out - (long)out;
-	out *= 10;
-	ft_putnbr((int)out);
-	out = out - (long)out;
-	out *= 10;
-	ft_putnbr((long long int)out);
+		mult = 6;
+	else
+		mult = arginp->prec;
+	while (mult)
+	{
+		out *= 10;
+		ft_putnbr((int)out);
+		out = out - (long)out;
+		--mult;
+	}
 }
 
 void		applycps(va_list valist, t_data *arginp, char c)
 {
-	uintmax_t inp;
+	uintmax_t	inp;
 
 	if (c == 's')
 		ft_putstr(va_arg(valist, char*));
