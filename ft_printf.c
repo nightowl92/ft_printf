@@ -6,14 +6,14 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:39 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/02 14:58:10 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/04 16:24:03 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-void		init(t_data *arginp)
+static void		init(t_data *arginp)
 {
 	arginp->flagno = 0;
 	arginp->flagmin = 0;
@@ -23,7 +23,7 @@ void		init(t_data *arginp)
 	arginp->flagzer = 0;
 	arginp->wid = 0;
 	arginp->prec = -1;
-	arginp->lengno = 0;
+	arginp->ferr = 0;
 	arginp->lenghh = 0;
 	arginp->lengh = 0;
 	arginp->lengl = 0;
@@ -31,7 +31,7 @@ void		init(t_data *arginp)
 	arginp->lengL = 0;
 }
 
-int			getflag(t_data *arginp, char *s)
+static int		getflag(t_data *arginp, char *s)
 {
 	int i;
 
@@ -41,10 +41,7 @@ int			getflag(t_data *arginp, char *s)
 	else if (s[0] == '+')
 		arginp->flagplu = 1;
 	else if (s[0] == ' ')
-	{
-		if (!arginp->flagzer)
-			arginp->flagsp = 1;
-	}
+		arginp->flagsp = 1;
 	else if (s[0] == '#')
 		arginp->flaghas = 1;
 	else if (s[0] == '0')
@@ -57,7 +54,7 @@ int			getflag(t_data *arginp, char *s)
 	return (i);
 }
 
-int			getargs(va_list valist, t_data *arginp, char *s, int *nb)
+static int		getargs(va_list valist, t_data *arginp, char *s)
 {
 	int i;
 	int ii;
@@ -72,13 +69,13 @@ int			getargs(va_list valist, t_data *arginp, char *s, int *nb)
 	while ((ii = getflag(arginp, s + i)))
 		i += ii;
 	i += getwidt(valist, arginp, s + i);
-	i += getprec(valist, arginp, s + i);
+	i += getprec(valist, arginp, s + i, 2);
 	i += getleng(arginp, s + i);
 	i += getspeci(valist, arginp, s + i);
 	return (i);
 }
 
-int			ft_printf(char *s, ...)
+int				ft_printf(char *s, ...)
 {
 	t_data	*arginp;
 	va_list	valist;
@@ -93,7 +90,7 @@ int			ft_printf(char *s, ...)
 	while (s[++i])
 	{
 		if (s[i] == '%')
-			i += getargs(valist, arginp, s + i + 1, &nb);
+			i += getargs(valist, arginp, s + i + 1);
 		else
 		{
 			write(1, s + i, 1);

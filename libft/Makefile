@@ -46,7 +46,9 @@ SRCS = ft_atoi.c ft_itoa.c\
 	   ft_lstadd.c \
 	   ft_lstiter.c \
 	   ft_lstmap.c \
-	   ft_numlen.c
+	   ft_numlen.c \
+	   ft_min.c  \
+	   ft_max.c
 
 OBJS = $(SRCS:.c=.o)
 

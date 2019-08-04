@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:47 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/31 18:13:34 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/04 16:25:28 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
-#include "./libft/libft.h"
+#include "../libft/libft.h"
 
 int		ft_printf(char *s, ...);
 
@@ -31,8 +31,8 @@ typedef struct		s_data
 	int wid;
 
 	int prec;
+	int ferr;
 
-	int lengno;
 	int lenghh;
 	int lengh;
 	int lengl;
@@ -40,9 +40,10 @@ typedef struct		s_data
 	int lengll;
 }					t_data;
 int			getwidt(va_list valist, t_data *arginp, char *s);
-int			getprec(va_list valist, t_data *arginp, char *s);
+int			getprec(va_list valist, t_data *arginp, char *s, int i);
 int			getleng(t_data *arginp, char *s);
 int			getspeci(va_list valist, t_data *arginp, char *s);
 void		applyuoxx(va_list valist, t_data *arginp, char c);
 void		applydi(va_list valist, t_data *arginp);
+void		putwidth(t_data *arginp, int maxval, int where);
 #endif

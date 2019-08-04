@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:47 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/02 16:49:59 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/04 15:51:31 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,8 @@ int			getwidt(va_list valist, t_data *arginp, char *s)
 	return (i);
 }
 
-int			getprec(va_list valist, t_data *arginp, char *s)
+int			getprec(va_list valist, t_data *arginp, char *s, int i)
 {
-	int i;
-
-	i = 2;
 	if (s[0] != '.')
 		return (0);
 	if (s[1] == '*')
@@ -45,8 +42,11 @@ int			getprec(va_list valist, t_data *arginp, char *s)
 	}
 	else if (s[1] == '-')
 	{
-		arginp->prec = 0;
-		i = ft_numlen(ft_atoi(s + 1), 10) + 1;
+		arginp->wid = ft_atoi(s + 1) * -1;
+		arginp->flagmin = 1;
+		arginp->ferr = 1;
+		arginp->prec = -1;
+		return (ft_numlen(ft_atoi(s + 1), 10) + 1);
 	}
 	else
 		i = 1;
@@ -58,38 +58,23 @@ int			getprec(va_list valist, t_data *arginp, char *s)
 
 int			getleng(t_data *arginp, char *s)
 {
-	int i;
-
-	i = 1;
-	arginp->lengno = 0;
-	if (*s == 'h')
+	if (s[0] == 'h' && s[1] == 'h')
 	{
-		if (*(s + 1) == 'h')
-		{
-			i = 2;
-			arginp->lenghh = 1;
-		}
-		else
-			arginp->lengh = 1;
+		arginp->lenghh = 1;
+		return (2);
+	}
+	else if (*s == 'h')
+		arginp->lengh = 1;
+	else if (*s == 'l' && *(s + 1) == 'l')
+	{
+		arginp->lengll = 1;
+		return (2);
 	}
 	else if (*s == 'l')
-	{
-		if (*(s + 1) == 'l')
-		{
-			i = 2;
-			arginp->lengll = 1;
-		}
-		else
-			arginp->lengl = 1;
-	}
+		arginp->lengl = 1;
 	else if (*s == 'L')
-	{
 		arginp->lengL = 1;
-	}
 	else
-	{
-		i = 0;
-		arginp->lengno = 1;
-	}
-	return (i);
+		return (0);
+	return (1);
 }

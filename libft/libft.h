@@ -6,7 +6,7 @@
 /*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 12:21:16 by stherkil          #+#    #+#             */
-/*   Updated: 2019/07/31 15:11:14 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/03 14:16:25 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_numlen(long long int nb, int base);
+int					ft_max(int a, int b);
+int					ft_min(int a, int b);
 
 typedef	struct		s_list
 {
