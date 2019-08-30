@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:39 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/04 16:24:03 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/29 17:16:41 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ static void		init(t_data *arginp)
 	arginp->flagsp = 0;
 	arginp->flaghas = 0;
 	arginp->flagzer = 0;
+	arginp->iswid = 1;
 	arginp->wid = 0;
+	arginp->isprec = 1;
 	arginp->prec = -1;
 	arginp->ferr = 0;
 	arginp->lenghh = 0;
 	arginp->lengh = 0;
 	arginp->lengl = 0;
 	arginp->lengll = 0;
-	arginp->lengL = 0;
+	arginp->lengbigl = 0;
 }
 
 static int		getflag(t_data *arginp, char *s)
@@ -60,11 +62,6 @@ static int		getargs(va_list valist, t_data *arginp, char *s)
 	int ii;
 
 	i = 0;
-	if (s[0] == '%')
-	{
-		ft_putchar('%');
-		return (1);
-	}
 	init(arginp);
 	while ((ii = getflag(arginp, s + i)))
 		i += ii;
@@ -83,10 +80,10 @@ int				ft_printf(char *s, ...)
 	int		nb;
 
 	i = -1;
-	nb = 0;
 	va_start(valist, s);
 	if (!(arginp = (t_data*)malloc(sizeof(t_data))))
 		return (0);
+	arginp->nb = 0;
 	while (s[++i])
 	{
 		if (s[i] == '%')
@@ -94,9 +91,11 @@ int				ft_printf(char *s, ...)
 		else
 		{
 			write(1, s + i, 1);
-			++nb;
+			++(arginp->nb);
 		}
 	}
+	nb = arginp->nb;
+	free(arginp);
 	va_end(valist);
 	return (nb);
 }

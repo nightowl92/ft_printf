@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:03 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/04 15:59:12 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/30 13:34:00 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void			putwidth(t_data *arginp, int maxval, int where)
 				ft_putchar('0');
 			else
 				ft_putchar(' ');
+			arginp->nb += 1;
 			--(arginp->wid);
 		}
 	}
@@ -30,9 +31,29 @@ void			putwidth(t_data *arginp, int maxval, int where)
 		while (arginp->wid > maxval && arginp->flagmin == 1)
 		{
 			ft_putchar(' ');
+			arginp->nb += 1;
 			--arginp->wid;
 		}
 	}
+}
+
+void			applyhash(t_data *arginp)
+{
+	int				maxval;
+
+	maxval = ft_max(1, arginp->prec) + arginp->flagplu;
+	putwidth(arginp, maxval, 0);
+	if (arginp->flagplu)
+		ft_putchar('+');
+	while (arginp->prec > 1)
+	{
+		ft_putchar('0');
+		arginp->nb += 1;
+		--arginp->prec;
+	}
+	ft_putchar('%');
+	arginp->nb += 1;
+	putwidth(arginp, maxval, 1);
 }
 
 void			applydi(va_list valist, t_data *arginp)
@@ -49,15 +70,23 @@ void			applydi(va_list valist, t_data *arginp)
 	maxval = ft_max(ft_numlen(inp, 10), arginp->prec) + arginp->flagplu;
 	putwidth(arginp, maxval, 0);
 	if (inp > 0 && arginp->flagplu == 1)
+	{
+		arginp->nb += 1;
 		ft_putchar('+');
+	}
 	else if (inp > 0 && arginp->flagsp)
+	{
+		arginp->nb += 1;
 		ft_putchar(' ');
+	}
 	while (arginp->prec > ft_numlen(inp, 10))
 	{
 		ft_putchar('0');
+		arginp->nb += 1;
 		--arginp->prec;
 	}
 	ft_putnbr(inp);
+	arginp->nb += ft_numlen(inp, 10);
 	putwidth(arginp, maxval, 1);
 }
 
@@ -67,24 +96,33 @@ static void		ft_putnbrtwo(t_data *arginp,
 	if (c == 'X')
 	{
 		if (arginp->flaghas)
+		{
 			ft_putstr("0X");
+			arginp->nb += 2;
+		}
 		while (arginp->prec > ft_numlen(inp, base))
 		{
 			ft_putchar('0');
+			arginp->nb += 1;
 			--arginp->prec;
 		}
-		ft_puthexu(inp);
+		inp = inp % 4294967296;
+		arginp->nb += ft_puthexu(inp);
 	}
 	else if (c == 'o')
 	{
 		if (arginp->flaghas && arginp->prec <= ft_numlen(inp, base))
+		{
+			arginp->nb += 1;
 			ft_putstr("0");
+		}
 		while (arginp->prec > ft_numlen(inp, base))
 		{
 			ft_putchar('0');
+			arginp->nb += 1;
 			--arginp->prec;
 		}
-		ft_putoct(inp);
+		arginp->nb += ft_putoct(inp);
 	}
 }
 
@@ -96,20 +134,28 @@ static void		ft_putnbruoxx(t_data *arginp,
 		while (arginp->prec > ft_numlen(inp, base))
 		{
 			ft_putchar('0');
+			arginp->nb += 1;
 			--arginp->prec;
 		}
 		ft_putnbr(inp);
+		arginp->nb += ft_numlen(inp, base);
 	}
 	else if (c == 'x')
 	{
 		if (arginp->flaghas)
+		{
+			arginp->nb += 2;
 			ft_putstr("0x");
+		}
 		while (arginp->prec > ft_numlen(inp, base))
 		{
 			ft_putchar('0');
+			arginp->nb += 1;
 			--arginp->prec;
 		}
+		inp = inp % 4294967296;
 		ft_puthex(inp);
+		arginp->nb += ft_numlen(inp, 16);
 	}
 	else if (c == 'X' || c == 'o')
 		ft_putnbrtwo(arginp, inp, c, base);
