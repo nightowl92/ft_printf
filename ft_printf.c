@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:39 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/29 17:16:41 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/02 13:45:29 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,23 @@
 
 static void		init(t_data *arginp)
 {
-	arginp->flagno = 0;
 	arginp->flagmin = 0;
 	arginp->flagplu = 0;
 	arginp->flagsp = 0;
 	arginp->flaghas = 0;
 	arginp->flagzer = 0;
-	arginp->iswid = 1;
+	arginp->iswid = 0;
 	arginp->wid = 0;
-	arginp->isprec = 1;
-	arginp->prec = -1;
+	arginp->isprec = 0;
+	arginp->prec = 0;
 	arginp->ferr = 0;
 	arginp->lenghh = 0;
 	arginp->lengh = 0;
 	arginp->lengl = 0;
 	arginp->lengll = 0;
 	arginp->lengbigl = 0;
+	arginp->typemax = 2147483648;
+	arginp->canprint = 0;
 }
 
 static int		getflag(t_data *arginp, char *s)
@@ -49,10 +50,7 @@ static int		getflag(t_data *arginp, char *s)
 	else if (s[0] == '0')
 		arginp->flagzer = 1;
 	else
-	{
-		arginp->flagno = 1;
 		i = 0;
-	}
 	return (i);
 }
 

@@ -6,15 +6,15 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:04:50 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/30 13:05:18 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/01 20:55:05 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long int		ft_puthexu(long long int n)
+intmax_t		ft_puthexu(intmax_t n)
 {
-	long long int result;
+	intmax_t result;
 
 	result = 0;
 	if (n < 10)

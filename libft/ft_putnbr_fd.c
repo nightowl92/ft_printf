@@ -6,13 +6,13 @@
 /*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:04:50 by stherkil          #+#    #+#             */
-/*   Updated: 2019/01/24 17:40:01 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/08/31 15:52:15 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_toneg(int n, int fd)
+static long long ft_toneg(long long n, int fd)
 {
 	if (n < 0)
 	{
@@ -22,11 +22,11 @@ static int	ft_toneg(int n, int fd)
 	return (n);
 }
 
-void		ft_putnbr_fd(int n, int fd)
+void					ft_putnbr_fd(long long n, int fd)
 {
-	if (n == -2147483648)
+	if ((unsigned long long)n == -9223372036854775808uLL && n < 0)
 	{
-		ft_putstr_fd("-2147483648", fd);
+		ft_putstr_fd("-9223372036854775808", fd);
 		return ;
 	}
 	n = ft_toneg(n, fd);

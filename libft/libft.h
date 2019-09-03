@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 12:21:16 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/30 13:05:14 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/02 19:29:41 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,21 @@ void				ft_memdel(void **ap);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_putchar(char c);
-void				ft_putstr(char const *s);
+int					ft_putnchar(char c, int n);
+int					ft_putstr(char const *s);
 void				ft_putendl(char const *s);
-void				ft_putnbr(int n);
-long long int		ft_puthex(long long int n);
-long long int		ft_puthexu(long long int n);
-int					ft_putoct(int n);
+void				ft_putnbr(long long n);
+intmax_t			ft_putnbrl(intmax_t n);
+intmax_t			ft_puthex(intmax_t n);
+intmax_t			ft_puthexl(intmax_t n);
+intmax_t			ft_puthexu(intmax_t n);
+intmax_t			ft_puthexul(intmax_t n);
+intmax_t			ft_putoct(intmax_t n);
+intmax_t			ft_putoctl(intmax_t n);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
-void				ft_putnbr_fd(int n, int fd);
+void				ft_putnbr_fd(long long n, int fd);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strncat(char *s1, const char *s2, size_t n);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
@@ -65,7 +70,7 @@ char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *haystack,
 										const char *needle, size_t n);
 char				*ft_strjoin(char const *s1, char const *s2);
-size_t				ft_strlen(const char *s);
+int					ft_strlen(const char *s);
 size_t				ft_strnlen(const char *s, size_t maxlen);
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char	(*f)(unsigned int, char));
@@ -81,6 +86,7 @@ int					ft_toupper(int c);
 int					ft_numlen(long long int nb, int base);
 int					ft_max(int a, int b);
 int					ft_min(int a, int b);
+intmax_t			ft_abs(intmax_t nb);
 
 typedef	struct		s_list
 {

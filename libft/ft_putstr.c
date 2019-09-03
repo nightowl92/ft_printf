@@ -6,14 +6,15 @@
 /*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 22:16:23 by stherkil          #+#    #+#             */
-/*   Updated: 2019/01/25 15:41:04 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/01 15:58:30 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+int		ft_putstr(char const *s)
 {
 	if (s)
 		ft_putstr_fd(s, 1);
+	return (ft_strlen(s));
 }

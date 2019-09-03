@@ -26,12 +26,17 @@ SRCS = ft_atoi.c ft_itoa.c\
 	   ft_memset.c \
 	   ft_putendl.c \
 	   ft_putnbr.c \
+	   ft_putnbrl.c \
 	   ft_puthex.c \
+	   ft_puthexl.c \
 	   ft_puthexu.c \
+	   ft_puthexul.c \
 	   ft_putoct.c \
+	   ft_putoctl.c \
 	   ft_strnlen.c \
 	   ft_strsplit.c \
 	   ft_putchar_fd.c \
+	   ft_putnchar.c \
 	   ft_putstr_fd.c \
 	   ft_putendl_fd.c \
 	   ft_putnbr_fd.c \
@@ -48,7 +53,8 @@ SRCS = ft_atoi.c ft_itoa.c\
 	   ft_lstmap.c \
 	   ft_numlen.c \
 	   ft_min.c  \
-	   ft_max.c
+	   ft_max.c  \
+	   ft_abs.c
 
 OBJS = $(SRCS:.c=.o)
 

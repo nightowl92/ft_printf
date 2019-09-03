@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*   ft_putnchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/11 15:04:50 by stherkil          #+#    #+#             */
-/*   Updated: 2019/09/01 20:53:33 by stherkil         ###   ########.fr       */
+/*   Created: 2019/08/31 16:50:17 by stherkil          #+#    #+#             */
+/*   Updated: 2019/09/01 16:54:10 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-intmax_t		ft_puthex(intmax_t n)
+int		ft_putnchar(char c, int n)
 {
-	intmax_t result;
+	int ret;
 
-	result = 0;
-	if (n < 10)
+	if (n < 0)
+		return (0);
+	ret = n;
+	while (n > 0)
 	{
-		ft_putnbr(n);
-		return (1);
+		write(1, &c, 1);
+		--n;
 	}
-	else if (n < 16)
-	{
-		ft_putchar(n - 10 + 'a');
-		return (1);
-	}
-	else
-	{
-		result += ft_puthex(n / 16);
-		result += ft_puthex(n % 16);
-	}
-	return (result);
+	return (ret);
 }
