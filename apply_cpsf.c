@@ -41,8 +41,13 @@ void		applycps(va_list valist, char c, t_data *arginp)
 			return ;
 		}
         len = (arginp->prec < ft_strlen(s)) && arginp->isprec ? arginp->prec : ft_strlen(s);
-        if (!arginp->flagmin)
-            arginp->nb += ft_putnchar(' ', arginp->wid - len);
+	if (!arginp->flagmin)
+	{
+		if (arginp->flagzer)
+            arginp->nb += ft_putnchar('0', arginp->wid - len);
+		else
+			arginp->nb += ft_putnchar(' ', arginp->wid - len);
+	}
         while (*s)
         {
             if (arginp->isprec && arginp->prec <= 0)
@@ -56,8 +61,13 @@ void		applycps(va_list valist, char c, t_data *arginp)
 	}
 	else if (c == 'c')
 	{
-        if (!arginp->flagmin)
-            arginp->nb += ft_putnchar(' ', arginp->wid - 1);
+			if (!arginp->flagmin)
+	{
+		if (arginp->flagzer)
+            arginp->nb += ft_putnchar('0', arginp->wid - 1);
+		else
+			arginp->nb += ft_putnchar(' ', arginp->wid - 1);
+	}
 		ch = va_arg(valist, int);
         arginp->nb += ft_putnchar(ch, 1);
         if (arginp->flagmin)

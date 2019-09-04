@@ -2,7 +2,7 @@
 
 intmax_t       get_signed(va_list valist, t_data *arginp)
 {
-    intmax_t n;
+    uintmax_t n;
 
 		if (arginp->lenghh)
 			n = ((signed char)va_arg(valist, signed int));

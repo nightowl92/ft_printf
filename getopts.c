@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:47 by stherkil          #+#    #+#             */
-/*   Updated: 2019/09/02 19:01:07 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/04 22:53:51 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int			getprec(va_list valist, t_data *arginp, char *s, int i)
 		return (ft_numlen(ft_atoi(s + 1), 10) + 1);
 	}
 	else
+	{
+		arginp->prec = 0;
 		i = 1;
+	}
 	if (arginp->isprec && arginp->wid <= arginp->prec)
 		arginp->wid = 0;
 	arginp->flagzer = 0;

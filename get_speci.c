@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:15:30 by stherkil          #+#    #+#             */
-/*   Updated: 2019/09/02 21:05:49 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/04 23:21:37 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 static void			applyhash(t_data *arginp)
 {
 	if (!arginp->flagmin)
-            arginp->nb += ft_putnchar(' ', arginp->wid - 1);
+	{
+		if (arginp->flagzer)
+            arginp->nb += ft_putnchar('0', arginp->wid - 1);
+		else
+			arginp->nb += ft_putnchar(' ', arginp->wid - 1);
+	}
         arginp->nb += ft_putnchar('%', 1);
         if (arginp->flagmin)
             arginp->nb += ft_putnchar(' ', arginp->wid - 1);
@@ -23,7 +28,9 @@ static void			applyhash(t_data *arginp)
 
 static void			applydi(t_data *arginp, intmax_t inp)
 {
-	if (!(arginp->prec == 0 && inp == 0 && !arginp->flagplu))
+	if (arginp->flagzer_)
+		arginp->flagzer = 0;
+	if (!(!arginp->flaghas && inp == 0 && arginp->prec == 0) || arginp->isprec == 0)
 		arginp->canprint = 1;
 	arginp->totallen = arginp->wid - ft_max(arginp->prec + (inp < 0), arginp->canprint * ft_numlen(inp, 10)) - ((arginp->flagplu && inp >= 0));
 	if (arginp->flagsp && (arginp->wid > ft_numlen(inp, 10) || !arginp->iswid) && inp >= 0 && !arginp->flagplu)

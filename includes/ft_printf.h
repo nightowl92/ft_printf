@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:47 by stherkil          #+#    #+#             */
-/*   Updated: 2019/09/02 21:05:02 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/04 21:46:08 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_data
 	int						flagsp;
 	int						flaghas;
 	int						flagzer;
+	int						flagzer_;
 	int						iswid;
 	int						wid;
 	int						isprec;
@@ -37,7 +38,6 @@ typedef struct		s_data
 	int						lengl;
 	int						lengbigl;
 	int						lengll;
-	unsigned long long int	typemax;
 	int						canprint;
 	int						totallen;
 }					t_data;
