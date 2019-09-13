@@ -6,7 +6,7 @@
 /*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:04:50 by stherkil          #+#    #+#             */
-/*   Updated: 2019/09/02 11:25:46 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/05 20:23:57 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 intmax_t	ft_putnbrl(intmax_t n)
 {
 	ft_putnbr_fd(n, 1);
-	return(ft_numlen(n, 10));
+	return (ft_numlen(n, 10));
 }

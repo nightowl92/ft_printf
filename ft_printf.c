@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:40:39 by stherkil          #+#    #+#             */
-/*   Updated: 2019/09/04 23:04:07 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/13 15:25:12 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void		init(t_data *arginp)
 	arginp->lengbigl = 0;
 	arginp->canprint = 0;
 	arginp->flagzer_ = 0;
+	arginp->flagzerf = 0;
+	arginp->len = 0;
 }
 
 static int		getflag(t_data *arginp, char *s)
@@ -46,7 +48,10 @@ static int		getflag(t_data *arginp, char *s)
 	else if (s[0] == ' ')
 		arginp->flagsp = 1;
 	else if (s[0] == '0')
+	{
+		arginp->flagzerf = 1;
 		arginp->flagzer = 1;
+	}
 	else if (s[0] == '#')
 	{
 		if (arginp->isprec)
@@ -58,7 +63,7 @@ static int		getflag(t_data *arginp, char *s)
 	return (i);
 }
 
-static int 		getall(va_list valist, t_data *arginp, char *s, int i)
+static int		getall(va_list valist, t_data *arginp, char *s, int i)
 {
 	int out;
 	int fl;
@@ -77,7 +82,7 @@ static int		getargs(va_list valist, t_data *arginp, char *s)
 	int i;
 	int ii;
 
-	i = 0;	
+	i = 0;
 	init(arginp);
 	while ((ii = getall(valist, arginp, s, i)))
 		i += ii;

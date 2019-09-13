@@ -6,13 +6,13 @@
 /*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 15:04:50 by stherkil          #+#    #+#             */
-/*   Updated: 2019/08/31 15:52:15 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/09/05 20:24:47 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static long long ft_toneg(long long n, int fd)
+static long long		ft_toneg(long long n, int fd)
 {
 	if (n < 0)
 	{
